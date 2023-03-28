@@ -4,6 +4,8 @@ import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_detail_provider.dart';
 import 'package:restaurant_app/widgets/card_restaurant_detail.dart';
 
+import '../common/result_state.dart';
+
 class RestaurantDetailScreen extends StatelessWidget {
   static const routeName = '/restaurant_detail';
   final String restaurantId;

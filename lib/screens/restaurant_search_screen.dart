@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/restaurant_search_provider.dart';
 import 'package:restaurant_app/widgets/card_search_restaurant.dart';
+import '../common/result_state.dart';
 import '../data/api/api_service.dart';
 
 class RestaurantSearchScreen extends StatefulWidget {

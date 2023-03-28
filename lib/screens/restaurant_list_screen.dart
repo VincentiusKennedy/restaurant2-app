@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_list_provider.dart';
+import 'package:restaurant_app/screens/restaurant_search_screen.dart';
+import '../common/result_state.dart';
 import '../widgets/card_restaurant_list.dart';
 
 class RestaurantListScreen extends StatelessWidget {
   const RestaurantListScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildList() {
     return ChangeNotifierProvider<RestaurantListProvider>(
       create: (_) => RestaurantListProvider(apiService: ApiService()),
       child: Consumer<RestaurantListProvider>(
@@ -32,6 +33,46 @@ class RestaurantListScreen extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Restaurants List',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RestaurantSearchScreen()),
+                );
+              },
+              icon: const Icon(Icons.search),
+              label: const Text('SEARCH'),
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: _buildList(),
     );
   }
 }

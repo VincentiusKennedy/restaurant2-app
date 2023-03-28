@@ -109,6 +109,26 @@ class CardRestaurantDetail extends StatelessWidget {
                         ctx, restaurantDetail.menus.drinks[index].name),
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text('Review: '),
+                ),
+                buildContainerReview(
+                  ListView.builder(
+                    itemCount: restaurantDetail.customerReviews.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: ListTile(
+                          title: Text(
+                            restaurantDetail.customerReviews[index].name,
+                          ),
+                          subtitle: Text(
+                              "${restaurantDetail.customerReviews[index].date}\n${restaurantDetail.customerReviews[index].review}"),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),
@@ -121,13 +141,28 @@ class CardRestaurantDetail extends StatelessWidget {
 Widget buildContainer(Widget child) {
   return Container(
     decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 238, 215, 238),
+      color: const Color.fromARGB(255, 243, 236, 243),
       border: Border.all(color: Colors.grey),
       borderRadius: BorderRadius.circular(10),
     ),
     margin: const EdgeInsets.all(10),
     padding: const EdgeInsets.all(10),
     height: 150,
+    width: double.infinity,
+    child: child,
+  );
+}
+
+Widget buildContainerReview(Widget child) {
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color.fromARGB(255, 243, 236, 243),
+      border: Border.all(color: Colors.grey),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    margin: const EdgeInsets.all(10),
+    padding: const EdgeInsets.all(5),
+    height: 230,
     width: double.infinity,
     child: child,
   );
