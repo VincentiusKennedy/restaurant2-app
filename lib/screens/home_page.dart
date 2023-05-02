@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/helper/notification_helper.dart';
+import 'package:restaurant_app/screens/restaurant_detail_screen.dart';
 import 'package:restaurant_app/screens/restaurant_favorite_screen.dart';
 import 'package:restaurant_app/screens/restaurant_list_screen.dart';
 import 'package:restaurant_app/screens/restaurant_search_screen.dart';
 import 'package:restaurant_app/screens/restaurant_setting_screen.dart';
+
+import '../data/models/restaurant_detail.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
@@ -14,6 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
 
   final List<Widget> _listWidget = [
     const RestaurantListScreen(),
@@ -33,6 +39,19 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _bottomNavIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper
+        .configureSelectNotificationSubject(RestaurantDetailScreen.routeName);
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 
   @override

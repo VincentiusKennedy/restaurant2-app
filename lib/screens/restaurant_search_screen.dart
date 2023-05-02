@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/restaurant_search_provider.dart';
 import 'package:restaurant_app/widgets/card_search_restaurant.dart';
@@ -23,7 +24,8 @@ class _RestaurantSearchState extends State<RestaurantSearchScreen> {
         title: const Text('Search Restaurant'),
       ),
       body: ChangeNotifierProvider<RestaurantSearchProvider>(
-        create: (_) => RestaurantSearchProvider(apiService: ApiService()),
+        create: (_) =>
+            RestaurantSearchProvider(apiService: ApiService(Client())),
         child: Consumer<RestaurantSearchProvider>(
           builder: (context, state, _) {
             return Scaffold(

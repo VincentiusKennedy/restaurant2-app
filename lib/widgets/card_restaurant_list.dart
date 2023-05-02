@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/models/restaurant_list.dart';
+import 'package:restaurant_app/helper/notification_helper.dart';
 import 'package:restaurant_app/provider/database_provider.dart';
 import 'package:restaurant_app/screens/restaurant_detail_screen.dart';
 
@@ -52,6 +53,10 @@ class CardRestaurantList extends StatelessWidget {
                                   child: Image.network(
                                       "https://restaurant-api.dicoding.dev/images/small/${restaurantList.pictureId}"),
                                 ),
+                              ),
+                              const TextButton(
+                                onPressed: permission,
+                                child: Text('Allow'),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),

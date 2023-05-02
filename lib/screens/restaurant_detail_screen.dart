@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_detail_provider.dart';
@@ -23,7 +24,7 @@ class RestaurantDetailScreen extends StatelessWidget {
       ),
       body: ChangeNotifierProvider<RestaurantDetailProvider>(
         create: (_) => RestaurantDetailProvider(
-            apiService: ApiService(), id: restaurantId),
+            apiService: ApiService(Client()), id: restaurantId),
         child: Consumer<RestaurantDetailProvider>(
           builder: (context, state, _) {
             if (state.state == ResultState.isLoading) {

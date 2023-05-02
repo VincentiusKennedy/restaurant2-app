@@ -18,7 +18,7 @@ void main() {
               '{"error":false,"message":"success","count":20,"restaurants":[]}',
               200));
 
-      expect(await ApiService().getRestaurant(), isA<Restaurant>());
+      expect(await ApiService(client).getRestaurant(), isA<Restaurant>());
     });
   });
 }
